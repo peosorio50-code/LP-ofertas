@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "lucide-static": "^1.49.0",
     "simple-icons": "^16.33.0",
     "typescript": "^6.0.3"
   }

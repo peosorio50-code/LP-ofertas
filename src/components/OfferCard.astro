@@ -5,7 +5,7 @@ import { formatPrice, type Offer } from '../data/offers';
 interface Props {
   offer: Offer;
   secao: 'hero' | 'vitrine';
-  variant?: 'compact' | 'grid';
+  variant?: 'compact' | 'grid' | 'featured';
   loading?: 'eager' | 'lazy';
   /** Cópia decorativa (usada para o loop infinito do carrossel). */
   duplicate?: boolean;
@@ -24,14 +24,23 @@ const { offer, secao, variant = 'grid', loading = 'lazy', duplicate = false } = 
   tabindex={duplicate ? -1 : undefined}
 >
   <div class="offer__media">
-    <img
-      src={offer.imagem}
-      alt={duplicate ? '' : offer.titulo}
-      width="240"
-      height="240"
-      loading={loading}
-      decoding="async"
-    />
+    {
+      offer.imagem ? (
+        <img
+          src={offer.imagem}
+          alt={duplicate ? '' : offer.titulo}
+          width="240"
+          height="240"
+          loading={loading}
+          decoding="async"
+        />
+      ) : (
+        // Placeholder de exemplo: trocar pela foto real do produto em src/data/offers.ts
+        <span class="offer__placeholder" aria-hidden="true">
+          {offer.titulo}
+        </span>
+      )
+    }
     <span class="offer__badge">
       <span aria-hidden="true">-{offer.desconto}%</span>
       <span class="sr-only">{offer.desconto}% de desconto</span>

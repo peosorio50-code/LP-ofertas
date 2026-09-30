@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import mascote from '../assets/mascote.png';
+
+// Sempre a mesma imagem (src/assets/mascote.png): só redimensiona, espelha e posiciona.
+interface Props {
+  widths: number[];
+  sizes: string;
+  alt?: string;
+  /** Espelha horizontalmente (mascote olhando para a esquerda). */
+  mirror?: boolean;
+  /** Balanço leve (desligado para quem pede menos movimento). */
+  sway?: boolean;
+  loading?: 'eager' | 'lazy';
+  priority?: boolean;
+  class?: string;
+}
+const { widths, sizes, alt = '', mirror = false, sway = false, loading = 'lazy', priority = false, class: className } =
+  Astro.props;
+---
+
+<span class:list={['mascot', className, { 'mascot--sway': sway }]}>
+  <Image
+    src={mascote}
+    alt={alt}
+    widths={widths}
+    sizes={sizes}
+    loading={loading}
+    fetchpriority={priority ? 'high' : undefined}
+    class:list={['mascot__img', { 'mascot__img--mirror': mirror }]}
+  />
+</span>

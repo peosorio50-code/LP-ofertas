@@ -3,7 +3,10 @@ export type Loja = 'Mercado Livre' | 'Shopee';
 export interface Offer {
   id: string;
   titulo: string;
-  /** Caminho ou URL da imagem do produto. */
+  /**
+   * Caminho ou URL da foto do produto.
+   * Vazio ('') = mostra um placeholder neutro com o nome do produto (usado nos dados de exemplo).
+   */
   imagem: string;
   /** Preço em reais (número). */
   precoAntigo: number;
@@ -19,12 +22,13 @@ export interface Offer {
 }
 
 // ATENÇÃO: DADOS DE EXEMPLO — substituir por ofertas reais.
-// Produtos, preços, descontos e links abaixo são fictícios, e as imagens são placeholders neutros.
+// Produtos, preços, descontos e links abaixo são fictícios. As fotos estão vazias ('')
+// de propósito: o card mostra um placeholder neutro até você colocar a foto real.
 export const offers: Offer[] = [
   {
     id: 'exemplo-1',
     titulo: 'Fone de ouvido Bluetooth com cancelamento de ruído',
-    imagem: '/ofertas/exemplo-1.svg',
+    imagem: '',
     precoAntigo: 249.9,
     precoAtual: 159.9,
     desconto: 36,
@@ -34,7 +38,7 @@ export const offers: Offer[] = [
   {
     id: 'exemplo-2',
     titulo: 'Panela de pressão elétrica 5 litros',
-    imagem: '/ofertas/exemplo-2.svg',
+    imagem: '',
     precoAntigo: 429.0,
     precoAtual: 299.0,
     desconto: 30,
@@ -44,7 +48,7 @@ export const offers: Offer[] = [
   {
     id: 'exemplo-3',
     titulo: 'Tênis de corrida leve com amortecimento',
-    imagem: '/ofertas/exemplo-3.svg',
+    imagem: '',
     precoAntigo: 299.99,
     precoAtual: 189.99,
     desconto: 37,
@@ -54,7 +58,7 @@ export const offers: Offer[] = [
   {
     id: 'exemplo-4',
     titulo: 'Mochila para notebook até 15,6" impermeável',
-    imagem: '/ofertas/exemplo-4.svg',
+    imagem: '',
     precoAntigo: 139.9,
     precoAtual: 89.9,
     desconto: 36,
@@ -64,7 +68,7 @@ export const offers: Offer[] = [
   {
     id: 'exemplo-5',
     titulo: 'Relógio inteligente com monitor de atividades',
-    imagem: '/ofertas/exemplo-5.svg',
+    imagem: '',
     precoAntigo: 349.0,
     precoAtual: 219.0,
     desconto: 37,
@@ -74,7 +78,7 @@ export const offers: Offer[] = [
   {
     id: 'exemplo-6',
     titulo: 'Luminária de mesa LED articulada',
-    imagem: '/ofertas/exemplo-6.svg',
+    imagem: '',
     precoAntigo: 119.9,
     precoAtual: 79.9,
     desconto: 33,
@@ -84,7 +88,7 @@ export const offers: Offer[] = [
   {
     id: 'exemplo-7',
     titulo: 'Cafeteira elétrica 30 xícaras',
-    imagem: '/ofertas/exemplo-7.svg',
+    imagem: '',
     precoAntigo: 189.9,
     precoAtual: 134.9,
     desconto: 29,
@@ -94,7 +98,7 @@ export const offers: Offer[] = [
   {
     id: 'exemplo-8',
     titulo: 'Controle sem fio para PC e celular',
-    imagem: '/ofertas/exemplo-8.svg',
+    imagem: '',
     precoAntigo: 159.9,
     precoAtual: 99.9,
     desconto: 38,

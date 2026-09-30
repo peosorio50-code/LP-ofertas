@@ -1,29 +1,24 @@
 ---
-import { Image } from 'astro:assets';
-import { MessageCirclePlus, PackageCheck, Plus, ScanSearch, ShieldCheck, ShoppingBag, Store } from 'lucide-static';
 import Base from '../layouts/Base.astro';
+import ChatMock from '../components/ChatMock.astro';
 import CtaButton from '../components/CtaButton.astro';
-import Icon from '../components/Icon.astro';
+import Mascot from '../components/Mascot.astro';
 import OfferCard from '../components/OfferCard.astro';
 import OfferTicker from '../components/OfferTicker.astro';
 import { offers } from '../data/offers';
-import mascote from '../assets/mascote.png';
 
 const mascotAlt = 'Mascote do FaroFino: cachorro caramelo detetive com chapéu xadrez e lupa';
 
 const steps = [
   {
-    icon: MessageCirclePlus,
     title: 'Você entra no grupo',
     text: 'Um clique e pronto. Não pedimos nome, e-mail nem cadastro.',
   },
   {
-    icon: ScanSearch,
     title: 'O FaroFino fareja',
     text: 'A gente monitora as lojas e separa só o que está com preço bom de verdade.',
   },
   {
-    icon: ShoppingBag,
     title: 'Você compra direto na loja',
     text: 'O link abre no site ou app oficial da loja. O pagamento e a entrega são com eles.',
   },
@@ -31,17 +26,14 @@ const steps = [
 
 const trustPoints = [
   {
-    icon: ShieldCheck,
     title: 'Compra no site oficial',
     text: 'Você é levado direto pro Mercado Livre ou pra Shopee. A gente nunca pede seus dados de pagamento.',
   },
   {
-    icon: Store,
     title: 'Lojas que você já conhece',
     text: 'Nada de loja desconhecida ou site estranho.',
   },
   {
-    icon: PackageCheck,
     title: 'Garantia da loja',
     text: 'Troca, devolução e suporte seguem as regras da loja onde você comprou.',
   },
@@ -63,13 +55,15 @@ const faq = [
   },
   { q: 'Como saio do grupo?', a: 'É só sair pelo próprio WhatsApp, a qualquer momento.' },
 ];
+
+const [featured, ...rest] = offers;
 ---
 
 <Base>
   <header class="site-header">
     <div class="container">
       <span class="brand">
-        <Image src={mascote} alt="" width={36} densities={[1, 2]} loading="eager" class="brand__logo" />
+        <Mascot widths={[32, 64]} sizes="32px" loading="eager" class="brand__logo" />
         <span class="brand__name">FaroFino Ofertas</span>
       </span>
     </div>
@@ -79,18 +73,15 @@ const faq = [
     <!-- 1. Primeira dobra -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero__grid">
-        <div class="hero__art">
-          <Image
-            src={mascote}
-            alt={mascotAlt}
-            widths={[72, 144, 216, 360, 486]}
-            sizes="(min-width: 960px) 360px, 72px"
-            loading="eager"
-            fetchpriority="high"
-            class="hero__mascot"
-          />
-        </div>
         <div class="hero__text">
+          <Mascot
+            widths={[80, 160]}
+            sizes="80px"
+            mirror
+            loading="eager"
+            alt={mascotAlt}
+            class="hero__mascot-mobile"
+          />
           <h1 id="hero-title" class="hero__title">
             A gente fareja as melhores ofertas. <span class="mark">Você só recebe no WhatsApp.</span>
           </h1>
@@ -103,52 +94,66 @@ const faq = [
             <p class="hero__note">Só o FaroFino posta no grupo. Você sai quando quiser.</p>
           </div>
         </div>
+        <div class="hero__art">
+          <Mascot
+            widths={[240, 420, 486]}
+            sizes="420px"
+            mirror
+            sway
+            loading="eager"
+            priority
+            alt={mascotAlt}
+            class="hero__mascot"
+          />
+        </div>
       </div>
       <OfferTicker />
     </section>
 
     <!-- 2. Como funciona -->
-    <section class="section" aria-labelledby="como-funciona">
-      <div class="container">
-        <h2 id="como-funciona" class="section__title">Como funciona</h2>
-        <ol class="steps" role="list">
-          {
-            steps.map((step, i) => (
-              <li class="card step">
-                <span class="step__icon">
-                  <Icon svg={step.icon} size={28} />
-                </span>
-                <span class="step__num" aria-hidden="true">
-                  {i + 1}
-                </span>
-                <h3 class="card__title">{step.title}</h3>
-                <p>{step.text}</p>
-              </li>
-            ))
-          }
-        </ol>
+    <section class="how" aria-labelledby="como-funciona">
+      <div class="container how__grid">
+        <div class="how__text">
+          <h2 id="como-funciona" class="title-xl">Como funciona</h2>
+          <ol class="how__steps" role="list">
+            {
+              steps.map((step, i) => (
+                <li class="how__step">
+                  <span class="how__num" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 class="how__step-title">{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+        <div class="how__phone">
+          <ChatMock />
+        </div>
       </div>
     </section>
 
     <!-- 3. Sem mistério -->
-    <section class="section trust" aria-labelledby="sem-misterio">
-      <div class="container">
-        <div class="trust__intro">
-          <h2 id="sem-misterio" class="section__title">Sem mistério: como a gente ganha dinheiro?</h2>
+    <section class="trust" aria-labelledby="sem-misterio">
+      <Mascot widths={[200, 320]} sizes="(min-width: 960px) 320px, 170px" class="trust__mascot" />
+      <div class="container trust__grid">
+        <div class="trust__main">
+          <h2 id="sem-misterio" class="title-xl">Sem mistério: como a gente ganha dinheiro?</h2>
           <p class="trust__text">
             Os links que mandamos são de programas de afiliados das próprias lojas. Quando você compra por eles, a
             loja paga uma pequena comissão pra gente. Você não paga nada a mais por isso: o preço é exatamente o
             mesmo do site.
           </p>
         </div>
-        <ul class="trust__grid" role="list">
+        <ul class="trust__list" role="list">
           {
             trustPoints.map((point) => (
-              <li class="card trust__card">
-                <span class="step__icon">
-                  <Icon svg={point.icon} size={28} />
-                </span>
-                <h3 class="card__title">{point.title}</h3>
+              <li class="trust__item">
+                <h3 class="trust__item-title">{point.title}</h3>
                 <p>{point.text}</p>
               </li>
             ))
@@ -158,35 +163,45 @@ const faq = [
     </section>
 
     <!-- 4. Vitrine -->
-    <section class="section" aria-labelledby="vitrine">
+    <section class="showcase-section" aria-labelledby="vitrine">
       <div class="container">
-        <h2 id="vitrine" class="section__title">Olha o tipo de coisa que o FaroFino encontra</h2>
+        <div class="showcase__head">
+          <h2 id="vitrine" class="title-xl">Olha o tipo de coisa que o FaroFino encontra</h2>
+          <p class="showcase__aside">
+            Isso aqui é amostra. No grupo, o preço muda rápido e quem manda é a loja.
+          </p>
+        </div>
         <ul class="showcase" role="list">
+          <li class="showcase__featured">
+            <OfferCard offer={featured} secao="vitrine" variant="featured" />
+          </li>
           {
-            offers.map((offer) => (
+            rest.map((offer) => (
               <li>
                 <OfferCard offer={offer} secao="vitrine" />
               </li>
             ))
           }
         </ul>
-        <div class="section__cta">
+        <div class="showcase__cta">
           <CtaButton secao="vitrine" label="Quero receber ofertas assim" />
         </div>
       </div>
     </section>
 
     <!-- 5. Perguntas frequentes -->
-    <section class="section section--faq" aria-labelledby="faq">
-      <div class="container container--narrow">
-        <h2 id="faq" class="section__title">Perguntas frequentes</h2>
+    <section class="faq-section" aria-labelledby="faq">
+      <div class="container faq__grid">
+        <h2 id="faq" class="title-xl faq__title">Perguntas frequentes</h2>
         <div class="faq">
           {
             faq.map((item) => (
               <details class="faq__item">
                 <summary>
                   <span>{item.q}</span>
-                  <Icon svg={Plus} size={22} class="faq__icon" />
+                  <span class="faq__icon" aria-hidden="true">
+                    +
+                  </span>
                 </summary>
                 <p>{item.a}</p>
               </details>
@@ -198,18 +213,20 @@ const faq = [
 
     <!-- 6. Chamada final -->
     <section class="final" aria-labelledby="final-title">
-      <div class="container final__inner">
-        <Image
-          src={mascote}
-          alt={mascotAlt}
-          widths={[140, 280]}
-          sizes="140px"
-          loading="lazy"
-          class="final__mascot"
-        />
-        <h2 id="final-title" class="final__title">Bora economizar?</h2>
-        <CtaButton secao="final" />
+      <div class="container final__grid">
+        <div class="final__text">
+          <h2 id="final-title" class="final__title">Bora economizar?</h2>
+          <p class="final__sub">O próximo achado pode ser aquela coisa que tá no seu carrinho faz um mês.</p>
+          <CtaButton secao="final" />
+        </div>
       </div>
+      <Mascot
+        widths={[240, 400, 486]}
+        sizes="(min-width: 960px) 400px, 220px"
+        mirror
+        alt={mascotAlt}
+        class="final__mascot"
+      />
     </section>
   </main>
 

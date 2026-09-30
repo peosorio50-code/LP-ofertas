@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import mascote from '../assets/mascote.png';
+
+// Mensagens de exemplo do grupo (produtos genéricos, só para ilustrar o formato).
+const messages = [
+  {
+    intro: 'Preço farejado!',
+    produto: 'Fone Bluetooth sem fio',
+    de: 'R$ 199,90',
+    por: 'R$ 119,90',
+    link: 'farofi.no/fone',
+    hora: '09:12',
+  },
+  {
+    intro: 'Pista quente: esse aqui não dura até amanhã.',
+    produto: 'Air fryer 4 litros',
+    de: 'R$ 399,90',
+    por: 'R$ 279,90',
+    link: 'farofi.no/airfryer',
+    hora: '12:47',
+  },
+];
+---
+
+<figure class="phone">
+  <figcaption class="sr-only">Exemplo de como as ofertas chegam no grupo do WhatsApp</figcaption>
+  <div class="phone__screen" aria-hidden="true">
+    <div class="chat__top">
+      <span class="chat__back">‹</span>
+      <span class="chat__avatar">
+        <Image src={mascote} alt="" widths={[40, 80]} sizes="40px" loading="lazy" />
+      </span>
+      <span class="chat__who">
+        <strong>FaroFino Ofertas</strong>
+        <small>grupo · só o FaroFino envia mensagens</small>
+      </span>
+    </div>
+
+    <div class="chat__body">
+      <span class="chat__day">Hoje</span>
+      {
+        messages.map((m) => (
+          <div class="bubble">
+            <span class="bubble__name">FaroFino</span>
+            <span class="bubble__photo">{m.produto}</span>
+            <p class="bubble__text">
+              <strong>{m.intro}</strong>
+              <br />
+              {m.produto}
+              <br />
+              <s>De {m.de}</s>
+              <br />
+              <b class="bubble__price">Por {m.por}</b>
+              <br />
+              <span class="bubble__link">{m.link}</span>
+            </p>
+            <span class="bubble__time">{m.hora}</span>
+          </div>
+        ))
+      }
+      <div class="bubble bubble--short">
+        <span class="bubble__name">FaroFino</span>
+        <p class="bubble__text">
+          Garrafa térmica 1 litro caiu de <s>R$ 89,90</s> pra <b class="bubble__price">R$ 54,90</b>. Farejei,
+          conferi, mandei.
+          <br />
+          <span class="bubble__link">farofi.no/garrafa</span>
+        </p>
+        <span class="bubble__time">18:05</span>
+      </div>
+    </div>
+
+    <div class="chat__footer">Somente o FaroFino pode enviar mensagens</div>
+  </div>
+</figure>
