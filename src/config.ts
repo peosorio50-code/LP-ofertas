@@ -10,7 +10,7 @@ export const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/SEU-CODIGO-DE-CONVI
  * Endereço público onde a página vai ficar hospedada (sem barra no final).
  * Necessário para a imagem de compartilhamento (Open Graph) funcionar no WhatsApp, Facebook etc.
  */
-export const SITE_URL = 'https://www.farofinoofertas.com.br';
+export const SITE_URL = 'https://farofino-ofertas.vercel.app';
 
 export const SITE_NAME = 'FaroFino Ofertas';
 export const PAGE_TITLE = 'FaroFino Ofertas | Promoções no WhatsApp';
