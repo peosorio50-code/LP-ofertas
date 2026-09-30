@@ -53,7 +53,9 @@ const ogImage = new URL('/og-image.jpg', SITE_URL).toString();
     <slot />
     <script>
       import { initTracking } from '../lib/tracking';
+      import { initInteractions } from '../lib/interactions';
       initTracking();
+      initInteractions();
     </script>
   </body>
 </html>

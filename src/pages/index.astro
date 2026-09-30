@@ -5,6 +5,7 @@ import CtaButton from '../components/CtaButton.astro';
 import Mascot from '../components/Mascot.astro';
 import OfferCard from '../components/OfferCard.astro';
 import OfferTicker from '../components/OfferTicker.astro';
+import SectionBg from '../components/SectionBg.astro';
 import { offers } from '../data/offers';
 
 const mascotAlt = 'Mascote do FaroFino: cachorro caramelo detetive com chapéu xadrez e lupa';
@@ -60,6 +61,9 @@ const [featured, ...rest] = offers;
 ---
 
 <Base>
+  <main>
+  <div class="top">
+  <SectionBg name="hero" eager />
   <header class="site-header">
     <div class="container">
       <span class="brand">
@@ -69,8 +73,7 @@ const [featured, ...rest] = offers;
     </div>
   </header>
 
-  <main>
-    <!-- 1. Primeira dobra -->
+    <!-- 1. Primeira dobra (o fundo fica no wrapper .top, junto com o cabeçalho) -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero__grid">
         <div class="hero__text">
@@ -78,6 +81,7 @@ const [featured, ...rest] = offers;
             widths={[80, 160]}
             sizes="80px"
             mirror
+            react
             loading="eager"
             alt={mascotAlt}
             class="hero__mascot-mobile"
@@ -100,6 +104,7 @@ const [featured, ...rest] = offers;
             sizes="420px"
             mirror
             sway
+            react
             loading="eager"
             priority
             alt={mascotAlt}
@@ -109,16 +114,18 @@ const [featured, ...rest] = offers;
       </div>
       <OfferTicker />
     </section>
+  </div>
 
     <!-- 2. Como funciona -->
     <section class="how" aria-labelledby="como-funciona">
+      <SectionBg name="como-funciona" />
       <div class="container how__grid">
         <div class="how__text">
           <h2 id="como-funciona" class="title-xl">Como funciona</h2>
           <ol class="how__steps" role="list">
             {
               steps.map((step, i) => (
-                <li class="how__step">
+                <li class="how__step" data-reveal>
                   <span class="how__num" aria-hidden="true">
                     {i + 1}
                   </span>
@@ -139,7 +146,8 @@ const [featured, ...rest] = offers;
 
     <!-- 3. Sem mistério -->
     <section class="trust" aria-labelledby="sem-misterio">
-      <Mascot widths={[200, 320]} sizes="(min-width: 960px) 320px, 170px" class="trust__mascot" />
+      <SectionBg name="sem-misterio" />
+      <Mascot widths={[200, 320]} sizes="(min-width: 960px) 320px, 170px" react class="trust__mascot" />
       <div class="container trust__grid">
         <div class="trust__main">
           <h2 id="sem-misterio" class="title-xl">Sem mistério: como a gente ganha dinheiro?</h2>
@@ -152,7 +160,7 @@ const [featured, ...rest] = offers;
         <ul class="trust__list" role="list">
           {
             trustPoints.map((point) => (
-              <li class="trust__item">
+              <li class="trust__item" data-reveal>
                 <h3 class="trust__item-title">{point.title}</h3>
                 <p>{point.text}</p>
               </li>
@@ -164,6 +172,7 @@ const [featured, ...rest] = offers;
 
     <!-- 4. Vitrine -->
     <section class="showcase-section" aria-labelledby="vitrine">
+      <SectionBg name="vitrine" />
       <div class="container">
         <div class="showcase__head">
           <h2 id="vitrine" class="title-xl">Olha o tipo de coisa que o FaroFino encontra</h2>
@@ -172,12 +181,12 @@ const [featured, ...rest] = offers;
           </p>
         </div>
         <ul class="showcase" role="list">
-          <li class="showcase__featured">
+          <li class="showcase__featured" data-reveal>
             <OfferCard offer={featured} secao="vitrine" variant="featured" />
           </li>
           {
             rest.map((offer) => (
-              <li>
+              <li data-reveal>
                 <OfferCard offer={offer} secao="vitrine" />
               </li>
             ))
@@ -191,12 +200,13 @@ const [featured, ...rest] = offers;
 
     <!-- 5. Perguntas frequentes -->
     <section class="faq-section" aria-labelledby="faq">
+      <SectionBg name="faq" />
       <div class="container faq__grid">
         <h2 id="faq" class="title-xl faq__title">Perguntas frequentes</h2>
         <div class="faq">
           {
             faq.map((item) => (
-              <details class="faq__item">
+              <details class="faq__item" data-reveal>
                 <summary>
                   <span>{item.q}</span>
                   <span class="faq__icon" aria-hidden="true">
@@ -213,6 +223,7 @@ const [featured, ...rest] = offers;
 
     <!-- 6. Chamada final -->
     <section class="final" aria-labelledby="final-title">
+      <SectionBg name="final" />
       <div class="container final__grid">
         <div class="final__text">
           <h2 id="final-title" class="final__title">Bora economizar?</h2>
@@ -224,6 +235,7 @@ const [featured, ...rest] = offers;
         widths={[240, 400, 486]}
         sizes="(min-width: 960px) 400px, 220px"
         mirror
+        react
         alt={mascotAlt}
         class="final__mascot"
       />

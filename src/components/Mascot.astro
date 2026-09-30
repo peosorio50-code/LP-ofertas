@@ -2,31 +2,46 @@
 import { Image } from 'astro:assets';
 import mascote from '../assets/mascote.png';
 
-// Sempre a mesma imagem (src/assets/mascote.png): só redimensiona, espelha e posiciona.
+// Sempre a mesma imagem (src/assets/mascote.png): só redimensiona, espelha, posiciona e movimenta.
 interface Props {
   widths: number[];
   sizes: string;
   alt?: string;
   /** Espelha horizontalmente (mascote olhando para a esquerda). */
   mirror?: boolean;
-  /** Balanço leve (desligado para quem pede menos movimento). */
+  /** Balanço leve contínuo. */
   sway?: boolean;
+  /** Inclina na direção do mouse/dedo e se agita quando alguém passa no botão. */
+  react?: boolean;
   loading?: 'eager' | 'lazy';
   priority?: boolean;
   class?: string;
 }
-const { widths, sizes, alt = '', mirror = false, sway = false, loading = 'lazy', priority = false, class: className } =
-  Astro.props;
+const {
+  widths,
+  sizes,
+  alt = '',
+  mirror = false,
+  sway = false,
+  react = false,
+  loading = 'lazy',
+  priority = false,
+  class: className,
+} = Astro.props;
 ---
 
-<span class:list={['mascot', className, { 'mascot--sway': sway }]}>
-  <Image
-    src={mascote}
-    alt={alt}
-    widths={widths}
-    sizes={sizes}
-    loading={loading}
-    fetchpriority={priority ? 'high' : undefined}
-    class:list={['mascot__img', { 'mascot__img--mirror': mirror }]}
-  />
+<span class:list={['mascot', className]} data-mascot-react={react ? '' : undefined}>
+  <span class="mascot__lean">
+    <span class:list={['mascot__move', { 'mascot__move--sway': sway }]}>
+      <Image
+        src={mascote}
+        alt={alt}
+        widths={widths}
+        sizes={sizes}
+        loading={loading}
+        fetchpriority={priority ? 'high' : undefined}
+        class:list={['mascot__img', { 'mascot__img--mirror': mirror }]}
+      />
+    </span>
+  </span>
 </span>
