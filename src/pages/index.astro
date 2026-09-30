@@ -6,6 +6,8 @@ import Mascot from '../components/Mascot.astro';
 import OfferCard from '../components/OfferCard.astro';
 import OfferTicker from '../components/OfferTicker.astro';
 import SectionBg from '../components/SectionBg.astro';
+import { Image } from 'astro:assets';
+import heroOfertas from '../assets/hero-ofertas.png';
 import { offers } from '../data/offers';
 
 const mascotAlt = 'Mascote do FaroFino: cachorro caramelo detetive com chapéu xadrez e lupa';
@@ -64,6 +66,16 @@ const [featured, ...rest] = offers;
   <main>
   <div class="top">
   <SectionBg name="hero" eager />
+  <!-- Composição de etiquetas e selos de oferta (imagem decorativa gerada para a primeira dobra) -->
+  <Image
+    src={heroOfertas}
+    alt=""
+    widths={[800, 1200, 1800]}
+    sizes="(min-width: 960px) 100vw, 120vw"
+    loading="eager"
+    class="hero__deco"
+    data-parallax
+  />
   <header class="site-header">
     <div class="container">
       <span class="brand">

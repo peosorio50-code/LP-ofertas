@@ -138,6 +138,24 @@ function initReveal() {
   });
 }
 
+/** Etiquetas do fundo da primeira dobra se movem de leve com o mouse (efeito de profundidade). */
+function initParallax() {
+  if (reduceMotion || !finePointer) return;
+  const layer = document.querySelector<HTMLElement>('[data-parallax]');
+  if (!layer) return;
+  window.addEventListener(
+    'pointermove',
+    (event) => {
+      if (window.scrollY > window.innerHeight) return;
+      const x = event.clientX / window.innerWidth - 0.5;
+      const y = event.clientY / window.innerHeight - 0.5;
+      layer.style.setProperty('--px', `${(-x * 24).toFixed(1)}px`);
+      layer.style.setProperty('--py', `${(-y * 16).toFixed(1)}px`);
+    },
+    { passive: true },
+  );
+}
+
 /** Botões: brilho que acompanha o mouse. */
 function initButtons() {
   if (!finePointer) return;
@@ -155,5 +173,6 @@ export function initInteractions() {
   initMascots();
   initChat();
   initReveal();
+  initParallax();
   initButtons();
 }
