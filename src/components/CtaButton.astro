@@ -1,0 +1,24 @@
+---
+import { WHATSAPP_GROUP_URL } from '../config';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+
+interface Props {
+  /** Nome da seção enviado no evento de clique: hero | vitrine | final */
+  secao: 'hero' | 'vitrine' | 'final';
+  label?: string;
+}
+const { secao, label = 'Entrar no grupo grátis' } = Astro.props;
+---
+
+<a
+  class="btn"
+  href={WHATSAPP_GROUP_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-cta={secao}
+  data-elemento="botao"
+>
+  <WhatsAppIcon size={24} />
+  <span>{label}</span>
+  <span class="sr-only">(abre o WhatsApp em uma nova aba)</span>
+</a>

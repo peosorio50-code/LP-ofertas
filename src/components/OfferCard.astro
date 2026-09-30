@@ -1,0 +1,49 @@
+---
+import { WHATSAPP_GROUP_URL } from '../config';
+import { formatPrice, type Offer } from '../data/offers';
+
+interface Props {
+  offer: Offer;
+  secao: 'hero' | 'vitrine';
+  variant?: 'compact' | 'grid';
+  loading?: 'eager' | 'lazy';
+  /** Cópia decorativa (usada para o loop infinito do carrossel). */
+  duplicate?: boolean;
+}
+const { offer, secao, variant = 'grid', loading = 'lazy', duplicate = false } = Astro.props;
+---
+
+<a
+  class:list={['offer', `offer--${variant}`]}
+  href={WHATSAPP_GROUP_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-cta={secao}
+  data-elemento="card"
+  data-oferta={offer.id}
+  tabindex={duplicate ? -1 : undefined}
+>
+  <div class="offer__media">
+    <img
+      src={offer.imagem}
+      alt={duplicate ? '' : offer.titulo}
+      width="240"
+      height="240"
+      loading={loading}
+      decoding="async"
+    />
+    <span class="offer__badge">
+      <span aria-hidden="true">-{offer.desconto}%</span>
+      <span class="sr-only">{offer.desconto}% de desconto</span>
+    </span>
+  </div>
+  <div class="offer__body">
+    <p class="offer__title">{offer.titulo}</p>
+    <p class="offer__prices">
+      <s class="offer__old"><span class="sr-only">De </span>{formatPrice(offer.precoAntigo)}</s>
+      <strong class="offer__new"><span class="sr-only">por </span>{formatPrice(offer.precoAtual)}</strong>
+    </p>
+    <p class="offer__store"><span class="sr-only">Loja: </span>{offer.loja}</p>
+  </div>
+  <span class="sr-only">. Toque para entrar no grupo do WhatsApp (abre em uma nova aba).</span>
+</a>

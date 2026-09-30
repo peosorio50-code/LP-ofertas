@@ -1,0 +1,21 @@
+{
+  "name": "farofino-ofertas-lp",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.3.5",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "lucide-static": "^1.49.0",
+    "simple-icons": "^16.33.0",
+    "typescript": "^6.0.3"
+  }
+}

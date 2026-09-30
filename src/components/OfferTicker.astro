@@ -1,0 +1,41 @@
+---
+import { offers } from '../data/offers';
+import OfferCard from './OfferCard.astro';
+---
+
+<section class="ticker" aria-label="Exemplos de ofertas que chegam no grupo" data-ticker>
+  <ul class="ticker__track" role="list">
+    {
+      offers.map((offer) => (
+        <li class="ticker__item">
+          <OfferCard offer={offer} secao="hero" variant="compact" loading="eager" />
+        </li>
+      ))
+    }
+    {
+      offers.map((offer) => (
+        <li class="ticker__item ticker__item--clone" aria-hidden="true">
+          <OfferCard offer={offer} secao="hero" variant="compact" loading="lazy" duplicate />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<script>
+  // Pausa o carrossel enquanto o usuário toca nele (no mouse, o :hover do CSS já pausa).
+  document.querySelectorAll<HTMLElement>('[data-ticker]').forEach((ticker) => {
+    let resumeTimer: number | undefined;
+    const pause = () => {
+      window.clearTimeout(resumeTimer);
+      ticker.classList.add('is-paused');
+    };
+    const resumeSoon = () => {
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => ticker.classList.remove('is-paused'), 2000);
+    };
+    ticker.addEventListener('touchstart', pause, { passive: true });
+    ticker.addEventListener('touchend', resumeSoon, { passive: true });
+    ticker.addEventListener('touchcancel', resumeSoon, { passive: true });
+  });
+</script>
