@@ -36,7 +36,7 @@ O site otimiza o tamanho sozinho. Sem a foto, a seção mostra só o degradê.
 | --- | --- | --- |
 | `hero.jpg` | Primeira dobra (atrás do título e do carrossel) | 1920×1080 |
 | `como-funciona.jpg` | Como funciona (atrás do celular) | 1920×1200 |
-| `sem-misterio.jpg` | Sem mistério (fica atrás de um degradê laranja/rosa) | 1920×1200 |
-| `final.jpg` | Chamada final (fica atrás de um degradê azul/violeta) | 1920×1080 |
+| `sem-misterio.jpg` | Sem mistério (fica atrás de um degradê verde-escuro) | 1920×1200 |
+| `final.jpg` | Chamada final (fica atrás de um degradê azul-marinho/verde) | 1920×1080 |
 
 Também dá para usar `vitrine.jpg` e `faq.jpg`, mas essas seções ficam melhores só com o degradê.
