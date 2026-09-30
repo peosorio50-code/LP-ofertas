@@ -1,0 +1,16 @@
+{
+  "_comment": "Fotos de exemplo do Pexels (licença gratuita, sem necessidade de crédito). Chave = id da oferta em offers.ts, valor = número da foto no pexels.com. Baixadas no build por scripts/fetch-offer-photos.mjs. Para usar a foto real do produto, preencha o campo 'imagem' da oferta.",
+  "exemplo-1": 7417547,
+  "exemplo-2": 4542855,
+  "exemplo-3": 5782042,
+  "exemplo-4": 3731256,
+  "exemplo-5": 9130511,
+  "exemplo-6": 923311,
+  "exemplo-7": 3735159,
+  "exemplo-8": 7675855,
+  "exemplo-9": 6195290,
+  "exemplo-10": 5051589,
+  "exemplo-11": 1267438,
+  "exemplo-12": 1148962,
+  "exemplo-13": 31961245
+}

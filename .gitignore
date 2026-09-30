@@ -3,3 +3,7 @@ dist/
 .astro/
 .DS_Store
 *.log
+
+# Fotos de exemplo baixadas no build
+public/ofertas/
+src/data/offer-photos.manifest.json

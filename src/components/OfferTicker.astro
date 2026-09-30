@@ -6,9 +6,9 @@ import OfferCard from './OfferCard.astro';
 <section class="ticker" aria-label="Exemplos de ofertas que chegam no grupo" data-ticker>
   <ul class="ticker__track" role="list">
     {
-      offers.map((offer) => (
+      offers.map((offer, i) => (
         <li class="ticker__item">
-          <OfferCard offer={offer} secao="hero" variant="compact" loading="eager" />
+          <OfferCard offer={offer} secao="hero" variant="compact" loading={i < 3 ? 'eager' : 'lazy'} />
         </li>
       ))
     }

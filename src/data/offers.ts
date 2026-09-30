@@ -23,8 +23,8 @@ export interface Offer {
 
 // ATENÇÃO: DADOS DE EXEMPLO — substituir por ofertas reais.
 // Produtos, preços, descontos e links abaixo são INVENTADOS, só para preencher os cards
-// (não são anúncios reais do Mercado Livre nem da Shopee). As fotos estão vazias ('')
-// de propósito: o card mostra um placeholder neutro até você colocar a foto real.
+// (não são anúncios reais do Mercado Livre nem da Shopee). Com 'imagem' vazio, o card usa uma
+// foto de exemplo do Pexels (src/data/offer-photos.json) e, se ela não existir, um placeholder neutro.
 export const offers: Offer[] = [
   {
     id: 'exemplo-1',
@@ -48,7 +48,7 @@ export const offers: Offer[] = [
   },
   {
     id: 'exemplo-3',
-    titulo: 'Air Fryer 4 Litros Antiaderente 1500W',
+    titulo: 'Jogo de Panelas Inox 5 Peças com Tampa de Vidro',
     imagem: '',
     precoAntigo: 499.90,
     precoAtual: 299.90,

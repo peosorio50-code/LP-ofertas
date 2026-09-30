@@ -1,6 +1,7 @@
 ---
 import { WHATSAPP_GROUP_URL } from '../config';
 import { formatPrice, type Offer } from '../data/offers';
+import downloadedPhotos from '../data/offer-photos.manifest.json';
 
 interface Props {
   offer: Offer;
@@ -11,6 +12,9 @@ interface Props {
   duplicate?: boolean;
 }
 const { offer, secao, variant = 'grid', loading = 'lazy', duplicate = false } = Astro.props;
+
+// Foto real (campo imagem) > foto de exemplo baixada no build > placeholder neutro
+const photo = offer.imagem || ((downloadedPhotos as string[]).includes(offer.id) ? `/ofertas/${offer.id}.jpg` : '');
 ---
 
 <a
@@ -26,12 +30,12 @@ const { offer, secao, variant = 'grid', loading = 'lazy', duplicate = false } = 
 >
   <div class="offer__media">
     {
-      offer.imagem ? (
+      photo ? (
         <img
-          src={offer.imagem}
+          src={photo}
           alt={duplicate ? '' : offer.titulo}
-          width="240"
-          height="240"
+          width="480"
+          height="480"
           loading={loading}
           decoding="async"
         />
