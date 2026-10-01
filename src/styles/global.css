@@ -393,7 +393,6 @@ a {
   width: calc(var(--logo-size) * 1.75);
   margin-right: calc(var(--logo-size) * 0.1);
   transform: rotate(-8deg);
-  filter: drop-shadow(2px 3px 0 rgba(14, 77, 67, 0.18));
 }
 
 .logo__type {
