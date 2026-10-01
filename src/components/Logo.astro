@@ -1,0 +1,19 @@
+---
+import Mascot from './Mascot.astro';
+
+interface Props {
+  /** "dark" para usar sobre fundo escuro (rodapé). */
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+const { tone = 'light', class: className } = Astro.props;
+---
+
+<span class:list={['logo', `logo--${tone}`, className]}>
+  <Mascot widths={[48, 96]} sizes="48px" loading="eager" class="logo__mascot" />
+  <span class="sr-only">FaroFino Ofertas</span>
+  <span class="logo__type" aria-hidden="true">
+    <span class="logo__word"><span class="logo__faro">Faro</span><span class="logo__fino">Fino</span></span>
+    <span class="logo__tag">Ofertas</span>
+  </span>
+</span>

@@ -379,21 +379,84 @@ a {
   padding-block: 12px 4px;
 }
 
-.brand {
+/* Logo: mascote encostado no nome, estilo adesivo de promoção */
+.logo {
+  --logo-size: 1.6rem;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  color: var(--forest);
 }
 
-.brand__logo {
-  width: 32px;
+.logo__mascot {
+  position: relative;
+  z-index: 1;
+  width: calc(var(--logo-size) * 1.75);
+  margin-right: calc(var(--logo-size) * 0.1);
+  transform: rotate(-8deg);
+  filter: drop-shadow(2px 3px 0 rgba(14, 77, 67, 0.18));
 }
 
-.brand__name {
-  font-family: var(--font-title);
-  font-weight: 800;
-  font-size: 1.125rem;
-  letter-spacing: -0.01em;
+.logo__type {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.logo__word {
+  font-family: 'Lilita One', var(--font-title);
+  font-weight: 400;
+  font-size: var(--logo-size);
+  line-height: 0.9;
+  letter-spacing: 0.005em;
+  transform: rotate(-3deg);
+  transform-origin: left bottom;
+}
+
+.logo__faro,
+.logo__fino {
+  text-shadow: 0.07em 0.07em 0 var(--lime);
+}
+
+.logo__faro {
+  color: var(--forest);
+}
+
+.logo__fino {
+  color: var(--green);
+}
+
+.logo__tag {
+  margin: 0.38em 0 0 0.12em;
+  padding: 0.18em 0.55em 0.16em;
+  border-radius: 0.35em 0.9em 0.9em 0.35em;
+  background: var(--forest);
+  color: var(--lime);
+  font-family: var(--font-body);
+  font-size: calc(var(--logo-size) * 0.34);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+  transform-origin: left top;
+}
+
+.logo--dark .logo__faro {
+  color: var(--cream);
+}
+
+.logo--dark .logo__fino {
+  color: var(--lime);
+  text-shadow: 0.07em 0.07em 0 var(--green);
+}
+
+.logo--dark .logo__faro {
+  text-shadow: 0.07em 0.07em 0 var(--green);
+}
+
+.logo--dark .logo__tag {
+  background: var(--lime);
+  color: var(--emerald-deep);
 }
 
 /* ---------- 1. Primeira dobra ---------- */
@@ -939,6 +1002,27 @@ a {
   font-size: 0.6875rem;
 }
 
+.bubble__photo--img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.bubble__thumb {
+  float: left;
+  width: 52px;
+  height: 52px;
+  margin: 2px 8px 2px 0;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.bubble--short::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 .bubble__text s {
   color: var(--navy-muted);
 }
@@ -1197,6 +1281,15 @@ a {
   border-top: 1px solid rgba(251, 244, 232, 0.2);
 }
 
+.site-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
 .site-footer__brand {
   font-weight: 700;
 }
@@ -1273,12 +1366,8 @@ a {
     padding-block: 22px 0;
   }
 
-  .brand__logo {
-    width: 40px;
-  }
-
-  .brand__name {
-    font-size: 1.25rem;
+  .site-header .logo {
+    --logo-size: 2.25rem;
   }
 
   /* Primeira dobra: título enorme à esquerda, mascote olhando pro botão */

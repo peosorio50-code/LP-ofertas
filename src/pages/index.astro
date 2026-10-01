@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import ChatMock from '../components/ChatMock.astro';
 import CtaButton from '../components/CtaButton.astro';
 import Mascot from '../components/Mascot.astro';
+import Logo from '../components/Logo.astro';
 import OfferCard from '../components/OfferCard.astro';
 import OfferTicker from '../components/OfferTicker.astro';
 import SectionBg from '../components/SectionBg.astro';
@@ -78,10 +79,7 @@ const [featured, ...rest] = offers;
   />
   <header class="site-header">
     <div class="container">
-      <span class="brand">
-        <Mascot widths={[32, 64]} sizes="32px" loading="eager" class="brand__logo" />
-        <span class="brand__name">FaroFino Ofertas</span>
-      </span>
+      <Logo />
     </div>
   </header>
 
@@ -256,7 +254,10 @@ const [featured, ...rest] = offers;
 
   <footer class="site-footer">
     <div class="container">
-      <p class="site-footer__brand">FaroFino Ofertas © 2026</p>
+      <div class="site-footer__top">
+        <Logo tone="dark" />
+        <p class="site-footer__brand">FaroFino Ofertas © 2026</p>
+      </div>
       <p class="site-footer__legal">
         O FaroFino Ofertas é um grupo independente e não tem vínculo com Mercado Livre, Shopee ou outras lojas
         citadas, além da participação em seus programas de afiliados. Preços e disponibilidade podem mudar a

@@ -1,12 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 import mascote from '../assets/mascote.png';
+import downloadedPhotos from '../data/offer-photos.manifest.json';
+
+// Usa as mesmas fotos de exemplo das ofertas (baixadas no build); sem foto, mostra o nome do produto.
+const photoFor = (offerId: string) =>
+  (downloadedPhotos as string[]).includes(offerId) ? `/ofertas/${offerId}.jpg` : '';
 
 // Mensagens de exemplo do grupo (produtos genéricos, só para ilustrar o formato).
 const messages = [
   {
     intro: 'Preço farejado!',
     produto: 'Fone Bluetooth sem fio',
+    foto: photoFor('exemplo-1'),
     de: 'R$ 199,90',
     por: 'R$ 119,90',
     link: 'farofi.no/fone',
@@ -14,10 +20,11 @@ const messages = [
   },
   {
     intro: 'Pista quente: esse aqui não dura até amanhã.',
-    produto: 'Air fryer 4 litros',
-    de: 'R$ 399,90',
-    por: 'R$ 279,90',
-    link: 'farofi.no/airfryer',
+    produto: 'Jogo de panelas inox 5 peças',
+    foto: photoFor('exemplo-3'),
+    de: 'R$ 499,90',
+    por: 'R$ 299,90',
+    link: 'farofi.no/panelas',
     hora: '12:47',
   },
 ];
@@ -44,7 +51,11 @@ const messages = [
           messages.map((m) => (
             <div class="bubble" data-bubble>
               <span class="bubble__name">FaroFino</span>
-              <span class="bubble__photo">{m.produto}</span>
+              {m.foto ? (
+                <img class="bubble__photo bubble__photo--img" src={m.foto} alt="" width="480" height="480" loading="lazy" decoding="async" />
+              ) : (
+                <span class="bubble__photo">{m.produto}</span>
+              )}
               <p class="bubble__text">
                 <strong>{m.intro}</strong>
                 <br />
@@ -62,8 +73,21 @@ const messages = [
         }
         <div class="bubble bubble--short" data-bubble>
           <span class="bubble__name">FaroFino</span>
+          {
+            photoFor('exemplo-2') && (
+              <img
+                class="bubble__thumb"
+                src={photoFor('exemplo-2')}
+                alt=""
+                width="480"
+                height="480"
+                loading="lazy"
+                decoding="async"
+              />
+            )
+          }
           <p class="bubble__text">
-            Garrafa térmica 1 litro caiu de <s>R$ 89,90</s> pra <b class="bubble__price">R$ 54,90</b>. Farejei,
+            Garrafa térmica 1 litro caiu de <s>R$ 89,90</s> pra <b class="bubble__price">R$ 44,90</b>. Farejei,
             conferi, mandei.
             <br />
             <span class="bubble__link">farofi.no/garrafa</span>
