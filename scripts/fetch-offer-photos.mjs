@@ -1,5 +1,5 @@
 // Baixa as fotos das ofertas para public/ofertas/ antes do build.
-// Ordem: foto principal do anúncio (og:image da página do produto) > foto ilustrativa do Pexels.
+// Ordem: foto principal das páginas de produto em marketplaces (og:image), na ordem da lista > foto ilustrativa do Pexels.
 // Se nada baixar, o card mostra o placeholder: o build nunca falha por isso.
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
@@ -48,13 +48,15 @@ await Promise.all(
       manifest[offerId] = { src: `/ofertas/${cached}`, tipo: cached.includes('.loja.') ? 'loja' : 'ilustrativa' };
       return;
     }
-    if (src.anuncio) {
+    for (const pageUrl of src.anuncios ?? []) {
+      const loja = new URL(pageUrl).hostname.replace(/^(www|produto|m)\./, '');
       try {
-        const file = await download(await storeImageUrl(src.anuncio), `${offerId}.loja`);
+        const file = await download(await storeImageUrl(pageUrl), `${offerId}.loja`);
         manifest[offerId] = { src: `/ofertas/${file}`, tipo: 'loja' };
+        console.log(`[fotos] ${offerId}: foto de ${loja}`);
         return;
       } catch (error) {
-        console.warn(`[fotos] ${offerId}: foto do anúncio falhou (${error.message}), usando a ilustrativa`);
+        console.warn(`[fotos] ${offerId}: ${loja} falhou (${error.message})`);
       }
     }
     if (src.pexels) {
