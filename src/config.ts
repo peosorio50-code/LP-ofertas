@@ -4,7 +4,7 @@
  */
 
 /** Link de convite do grupo do WhatsApp. Usado por TODOS os botões e cards da página. */
-export const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/SEU-CODIGO-DE-CONVITE';
+export const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/JIIgoM7B4Ga3hdoIofhg3u';
 
 /**
  * Endereço público onde a página vai ficar hospedada (sem barra no final).
