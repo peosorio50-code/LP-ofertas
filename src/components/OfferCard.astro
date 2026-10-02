@@ -3,6 +3,8 @@ import { WHATSAPP_GROUP_URL } from '../config';
 import { formatPrice, type Offer } from '../data/offers';
 import downloadedPhotos from '../data/offer-photos.manifest.json';
 
+type PhotoInfo = { src: string; tipo: 'loja' | 'ilustrativa' };
+
 interface Props {
   offer: Offer;
   secao: 'hero' | 'vitrine';
@@ -13,8 +15,10 @@ interface Props {
 }
 const { offer, secao, variant = 'grid', loading = 'lazy', duplicate = false } = Astro.props;
 
-// Foto real (campo imagem) > foto de exemplo baixada no build > placeholder neutro
-const photo = offer.imagem || ((downloadedPhotos as string[]).includes(offer.id) ? `/ofertas/${offer.id}.jpg` : '');
+// Foto fixada (campo imagem) > foto baixada no build (do anúncio ou ilustrativa) > placeholder neutro
+const downloaded = (downloadedPhotos as Record<string, PhotoInfo>)[offer.id];
+const photo = offer.imagem || downloaded?.src || '';
+const isStorePhoto = Boolean(offer.imagem) || downloaded?.tipo === 'loja';
 ---
 
 <a
@@ -32,6 +36,7 @@ const photo = offer.imagem || ((downloadedPhotos as string[]).includes(offer.id)
     {
       photo ? (
         <img
+          class:list={{ 'is-store': isStorePhoto }}
           src={photo}
           alt={duplicate ? '' : offer.titulo}
           width="480"

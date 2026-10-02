@@ -605,6 +605,12 @@ a {
   background: var(--mint-pale);
 }
 
+/* Foto do anúncio (produto em fundo branco): mostra inteira, sem cortar */
+.offer__media img.is-store {
+  object-fit: contain;
+  background: var(--white);
+}
+
 /* Placeholder neutro das ofertas de exemplo */
 .offer__placeholder {
   display: grid;
@@ -1005,6 +1011,13 @@ a {
   display: block;
   width: 100%;
   object-fit: cover;
+}
+
+/* Foto do anúncio no celular simulado: produto inteiro, fundo branco */
+.bubble__photo--img[src*='.loja.'],
+.bubble__thumb[src*='.loja.'] {
+  object-fit: contain;
+  background: var(--white);
 }
 
 .bubble__thumb {

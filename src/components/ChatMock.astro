@@ -5,7 +5,7 @@ import downloadedPhotos from '../data/offer-photos.manifest.json';
 
 // Usa as mesmas fotos de exemplo das ofertas (baixadas no build); sem foto, mostra o nome do produto.
 const photoFor = (offerId: string) =>
-  (downloadedPhotos as string[]).includes(offerId) ? `/ofertas/${offerId}.jpg` : '';
+  (downloadedPhotos as Record<string, { src: string }>)[offerId]?.src ?? '';
 
 // Mensagens de exemplo no formato do grupo, usando as ofertas reais de src/data/offers.ts.
 const messages = [

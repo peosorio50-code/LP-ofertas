@@ -1,12 +1,38 @@
 {
-  "_comment": "Fotos ilustrativas do Pexels (licença gratuita, sem necessidade de crédito), uma por oferta. Chave = id da oferta em offers.ts, valor = número da foto no pexels.com. Baixadas no build por scripts/fetch-offer-photos.mjs. Para usar a foto do anúncio, preencha o campo 'imagem' da oferta.",
-  "oferta-1": 7417547,
-  "oferta-2": 4542855,
-  "oferta-3": 5782042,
-  "oferta-4": 3731256,
-  "oferta-5": 6195290,
-  "oferta-6": 1267438,
-  "oferta-7": 31961245,
-  "oferta-8": 3780681,
-  "oferta-9": 4542855
+  "_comment": "Fotos das ofertas, baixadas no build por scripts/fetch-offer-photos.mjs. Primeiro tenta a foto principal do anúncio (campo 'anuncio': página do produto no Mercado Livre); se não der, usa a foto ilustrativa do Pexels (campo 'pexels': número da foto). Para fixar uma foto, preencha o campo 'imagem' da oferta em offers.ts.",
+  "oferta-1": {
+    "anuncio": "https://www.mercadolivre.com.br/fone-de-ouvido-pulse-tws-bluetooth-53-com-touch-som-estereo-e-ate-12h-de-bateria-ph413/p/MLB24673833",
+    "pexels": 7417547
+  },
+  "oferta-2": {
+    "anuncio": "https://www.mercadolivre.com.br/invicta-garrafa-termica-cafe-cha-inquebravel-inox-1litro-cor-prateado/p/MLB23745717",
+    "pexels": 4542855
+  },
+  "oferta-3": {
+    "anuncio": "https://www.mercadolivre.com.br/jogo-panela-5-pecas-tampa-vidro-aco-inox-wincy-cor-prateado/p/MLB33586955",
+    "pexels": 5782042
+  },
+  "oferta-4": {
+    "pexels": 3731256
+  },
+  "oferta-5": {
+    "anuncio": "https://www.mercadolivre.com.br/aspirador-de-po-vertical-britnia-2-em-1-1400w-bas30-15l-cor-azul/p/MLB43508915",
+    "pexels": 6195290
+  },
+  "oferta-6": {
+    "anuncio": "https://produto.mercadolivre.com.br/MLB-3483679389-jogo-de-lencol-queen-3-pecas-400-fios-c-elastico-hotel-_JM",
+    "pexels": 1267438
+  },
+  "oferta-7": {
+    "anuncio": "https://www.mercadolivre.com.br/britnia-cp30-cafeteira-eletrica-inox-cor-preta-110v/p/MLB6185042",
+    "pexels": 31961245
+  },
+  "oferta-8": {
+    "anuncio": "https://www.mercadolivre.com.br/fone-de-ouvido-sem-fio-tws-huawei-freebuds-se2-azul-luz-verde/p/MLB27171022",
+    "pexels": 3780681
+  },
+  "oferta-9": {
+    "anuncio": "https://www.mercadolivre.com.br/garrafa-termica-cafe-bomba-presso-1l-inox-lumina-termolar-cor-prateado/p/MLB34811737",
+    "pexels": 4542855
+  }
 }
