@@ -1306,6 +1306,21 @@ a {
   font-weight: 700;
 }
 
+.site-footer__cnpj {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(251, 244, 232, 0.8);
+  text-align: inherit;
+}
+
+@media (min-width: 640px) {
+  .site-footer__brand {
+    text-align: right;
+  }
+}
+
 .site-footer__legal {
   margin-top: 8px;
   max-width: 760px;
