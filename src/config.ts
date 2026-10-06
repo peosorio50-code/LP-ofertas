@@ -3,8 +3,12 @@
  * Troque os valores aqui e todos os botões/metadados são atualizados.
  */
 
-/** Link de convite do grupo do WhatsApp. Usado por TODOS os botões e cards da página. */
-export const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/GaxtNn4iGTuI2H9ZfioF3H';
+/**
+ * Link de entrada no grupo do WhatsApp. Usado por TODOS os botões e cards da página.
+ * É um endereço próprio que redireciona para o grupo da vez, então dá para trocar
+ * o grupo sem mexer no site. Os parâmetros utm_* da página são repassados para ele.
+ */
+export const WHATSAPP_GROUP_URL = 'https://entrar.farofinoofertas.com';
 
 /**
  * Endereço público onde a página vai ficar hospedada (sem barra no final).
