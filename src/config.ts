@@ -10,7 +10,7 @@ export const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/GaxtNn4iGTuI2H9Zfio
  * Endereço público onde a página vai ficar hospedada (sem barra no final).
  * Necessário para a imagem de compartilhamento (Open Graph) funcionar no WhatsApp, Facebook etc.
  */
-export const SITE_URL = 'https://farofinoofertas.com';
+export const SITE_URL = 'https://entrar.farofinoofertas.com';
 
 export const SITE_NAME = 'FaroFino Ofertas';
 export const PAGE_TITLE = 'FaroFino Ofertas | Promoções no WhatsApp';
