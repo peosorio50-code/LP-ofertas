@@ -42,10 +42,31 @@ const ogImage = new URL('/og-image.jpg', SITE_URL).toString();
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Lilita+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap"
     />
 
+    <!-- Meta Pixel Code -->
+    <script is:inline>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1638497151060044');
+      fbq('track', 'PageView');
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display:none"
+        src="https://www.facebook.com/tr?id=1638497151060044&ev=PageView&noscript=1"
+      /></noscript
+    >
+    <!-- End Meta Pixel Code -->
+
     <!--
-      ESPAÇO RESERVADO PARA ANALYTICS (ainda não instalado)
-      - Meta Pixel: cole aqui o código base do Pixel (fbq('init', 'SEU_PIXEL_ID'); fbq('track', 'PageView');)
-      - Google Analytics 4: cole aqui o gtag.js (gtag('config', 'G-XXXXXXX');)
+      Google Analytics 4 (ainda não instalado): cole aqui o gtag.js (gtag('config', 'G-XXXXXXX');)
       Os cliques nos botões já chamam fbq/gtag automaticamente quando existirem (ver src/lib/tracking.ts).
     -->
   </head>
