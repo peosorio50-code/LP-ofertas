@@ -42,8 +42,11 @@ export type CtaClick = {
   oferta?: string;
 };
 
+/** Versão da página no teste A/B ('a' = página principal, 'b' = versão curta em /b). */
+const getVariante = () => document.documentElement.dataset.variante || 'a';
+
 export function trackCtaClick(data: CtaClick, utms: Record<string, string>) {
-  const payload = { event: 'cta_click', ...data, ...utms };
+  const payload = { event: 'cta_click', variante: getVariante(), ...data, ...utms };
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);
@@ -56,7 +59,12 @@ export function trackCtaClick(data: CtaClick, utms: Record<string, string>) {
 
   // ---- Google Analytics 4 (instalar o gtag.js no <head>, em src/layouts/Base.astro) ----
   if (typeof window.gtag === 'function') {
-    window.gtag('event', 'cta_click', { secao: data.secao, elemento: data.elemento, oferta: data.oferta });
+    window.gtag('event', 'cta_click', {
+      variante: getVariante(),
+      secao: data.secao,
+      elemento: data.elemento,
+      oferta: data.oferta,
+    });
   }
 }
 
@@ -64,8 +72,11 @@ export function initTracking() {
   const utms = getPageUtms();
   const links = document.querySelectorAll<HTMLAnchorElement>('a[data-cta]');
 
+  // lp=a|b vai junto no link do grupo, para o redirecionamento também saber a versão
+  const params = { ...utms, lp: getVariante() };
+
   links.forEach((link) => {
-    if (Object.keys(utms).length) link.href = appendUtms(link.href, utms);
+    link.href = appendUtms(link.href, params);
 
     link.addEventListener('click', () => {
       trackCtaClick(

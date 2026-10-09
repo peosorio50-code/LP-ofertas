@@ -40,3 +40,13 @@ O site otimiza o tamanho sozinho. Sem a foto, a seção mostra só o degradê.
 | `final.jpg` | Chamada final (fica atrás de um degradê azul-marinho/verde) | 1920×1080 |
 
 Também dá para usar `vitrine.jpg` e `faq.jpg`, mas essas seções ficam melhores só com o degradê.
+
+## Teste A/B
+
+- **Versão A** (página completa): `farofinoofertas.com` → `src/pages/index.astro`
+- **Versão B** (página curta): `farofinoofertas.com/b` → `src/pages/b.astro` (não aparece no Google: `noindex`)
+
+Cada versão se identifica em todas as métricas:
+- **Meta Pixel:** o `PageView` traz a URL (`/` ou `/b`) e o evento `CliqueGrupoWhatsApp` traz o parâmetro `variante` (`a` ou `b`).
+- **Clarity:** etiqueta personalizada `variante` (filtre as gravações por ela).
+- **Link do grupo:** recebe `lp=a` ou `lp=b`, junto com as UTMs.

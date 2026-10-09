@@ -1,0 +1,141 @@
+---
+/**
+ * Versão B (teste A/B): página curta e direta.
+ * Mesma identidade da versão A (src/pages/index.astro), com só o essencial:
+ * título, botão, 3 ofertas e um segundo botão. Fica em farofinoofertas.com/b.
+ */
+import Base from '../layouts/Base.astro';
+import CtaButton from '../components/CtaButton.astro';
+import Logo from '../components/Logo.astro';
+import Mascot from '../components/Mascot.astro';
+import OfferCard from '../components/OfferCard.astro';
+import SectionBg from '../components/SectionBg.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { Image } from 'astro:assets';
+import heroOfertas from '../assets/hero-ofertas.png';
+import { offers } from '../data/offers';
+
+const mascotAlt = 'Mascote do FaroFino: cachorro caramelo detetive com chapéu xadrez e lupa';
+
+// As 3 ofertas com maior desconto
+const destaque = [...offers].sort((a, b) => b.desconto - a.desconto).slice(0, 3);
+---
+
+<Base variante="b">
+  <main class="lp-b">
+    <div class="top">
+      <SectionBg name="hero" eager />
+      <Image
+        src={heroOfertas}
+        alt=""
+        widths={[800, 1200, 1800]}
+        sizes="(min-width: 960px) 100vw, 120vw"
+        loading="eager"
+        class="hero__deco"
+        data-parallax
+      />
+      <header class="site-header">
+        <div class="container">
+          <Logo />
+        </div>
+      </header>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero__grid">
+          <div class="hero__text">
+            <Mascot
+              widths={[80, 160]}
+              sizes="80px"
+              mirror
+              react
+              loading="eager"
+              alt={mascotAlt}
+              class="hero__mascot-mobile"
+            />
+            <h1 id="hero-title" class="hero__title">
+              A gente fareja as melhores ofertas. <span class="mark">Você só recebe no WhatsApp.</span>
+            </h1>
+            <p class="hero__sub">Promoções de verdade do Mercado Livre e da Shopee. Grátis e sem cadastro.</p>
+            <div class="hero__cta">
+              <CtaButton secao="hero" />
+              <p class="hero__note">Só o FaroFino posta no grupo. Você sai quando quiser.</p>
+            </div>
+          </div>
+          <div class="hero__art">
+            <Mascot
+              widths={[240, 420, 486]}
+              sizes="420px"
+              mirror
+              sway
+              react
+              loading="eager"
+              priority
+              alt={mascotAlt}
+              class="hero__mascot"
+            />
+          </div>
+        </div>
+
+        <div class="container b-offers">
+          <h2 class="b-offers__title">Exemplos do que cai no grupo</h2>
+          <ul class="b-offers__grid" role="list">
+            {
+              destaque.map((offer, i) => (
+                <li>
+                  <OfferCard offer={offer} secao="vitrine" variant="compact" loading={i < 3 ? 'eager' : 'lazy'} />
+                </li>
+              ))
+            }
+          </ul>
+          <div class="b-offers__cta">
+            <CtaButton secao="final" label="Quero ofertas assim" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .b-offers {
+    margin-top: 22px;
+  }
+
+  .b-offers__title {
+    margin-bottom: 10px;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--navy-muted);
+  }
+
+  .b-offers__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .b-offers__cta {
+    margin-top: 20px;
+    padding-bottom: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .b-offers__grid {
+      gap: 14px;
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .b-offers {
+      margin-top: 8px;
+    }
+
+    .b-offers__title {
+      font-size: 1rem;
+    }
+  }
+</style>

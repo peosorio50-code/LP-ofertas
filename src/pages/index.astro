@@ -7,6 +7,7 @@ import Logo from '../components/Logo.astro';
 import OfferCard from '../components/OfferCard.astro';
 import OfferTicker from '../components/OfferTicker.astro';
 import SectionBg from '../components/SectionBg.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import { Image } from 'astro:assets';
 import heroOfertas from '../assets/hero-ofertas.png';
 import { offers } from '../data/offers';
@@ -252,20 +253,5 @@ const [featured, ...rest] = offers;
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__top">
-        <Logo tone="dark" />
-        <p class="site-footer__brand">
-          FaroFino Ofertas © 2026
-          <span class="site-footer__cnpj">CNPJ 40.406.523/0001-57</span>
-        </p>
-      </div>
-      <p class="site-footer__legal">
-        O FaroFino Ofertas é um grupo independente e não tem vínculo com Mercado Livre, Shopee ou outras lojas
-        citadas, além da participação em seus programas de afiliados. Preços e disponibilidade podem mudar a
-        qualquer momento e são definidos pelas lojas.
-      </p>
-    </div>
-  </footer>
+  <SiteFooter />
 </Base>
