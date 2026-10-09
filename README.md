@@ -43,8 +43,11 @@ Também dá para usar `vitrine.jpg` e `faq.jpg`, mas essas seções ficam melhor
 
 ## Teste A/B
 
-- **Versão A** (página completa): `farofinoofertas.com` → `src/pages/index.astro`
-- **Versão B** (página curta): `farofinoofertas.com/b` → `src/pages/b.astro` (não aparece no Google: `noindex`)
+- **Versão A**: `farofinoofertas.com` → texto original (tom de amigo que manda promoção)
+- **Versão B**: `farofinoofertas.com/b` → texto "chega de pagar caro / promoção boa não é sorte" (não aparece no Google: `noindex`)
+
+As duas usam exatamente o mesmo layout (`src/components/LandingPage.astro`). Os textos de cada uma ficam em
+`src/data/copy.ts` (`copyA` e `copyB`): para testar uma nova copy, é só editar ali.
 
 Cada versão se identifica em todas as métricas:
 - **Meta Pixel:** o `PageView` traz a URL (`/` ou `/b`) e o evento `CliqueGrupoWhatsApp` traz o parâmetro `variante` (`a` ou `b`).
