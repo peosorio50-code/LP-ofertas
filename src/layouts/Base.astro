@@ -42,7 +42,7 @@ const ogImage = new URL('/og-image.jpg', SITE_URL).toString();
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Lilita+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap"
     />
 
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code (dois pixels: 1638497151060044 e 1374694161407898, um único PageView) -->
     <script is:inline>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -53,6 +53,7 @@ const ogImage = new URL('/og-image.jpg', SITE_URL).toString();
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1638497151060044');
+      fbq('init', '1374694161407898');
       fbq('track', 'PageView');
     </script>
     <noscript
@@ -61,6 +62,14 @@ const ogImage = new URL('/og-image.jpg', SITE_URL).toString();
         width="1"
         style="display:none"
         src="https://www.facebook.com/tr?id=1638497151060044&ev=PageView&noscript=1"
+      /></noscript
+    >
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display:none"
+        src="https://www.facebook.com/tr?id=1374694161407898&ev=PageView&noscript=1"
       /></noscript
     >
     <!-- End Meta Pixel Code -->
