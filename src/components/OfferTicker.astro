@@ -1,6 +1,13 @@
 ---
-import { offers } from '../data/offers';
+import { offers as defaultOffers, type Offer } from '../data/offers';
+import { WHATSAPP_GROUP_URL } from '../config';
 import OfferCard from './OfferCard.astro';
+
+interface Props {
+  offers?: Offer[];
+  href?: string;
+}
+const { offers = defaultOffers, href = WHATSAPP_GROUP_URL } = Astro.props;
 ---
 
 <section class="ticker" aria-label="Exemplos de ofertas que chegam no grupo" data-ticker>
@@ -8,14 +15,14 @@ import OfferCard from './OfferCard.astro';
     {
       offers.map((offer, i) => (
         <li class="ticker__item">
-          <OfferCard offer={offer} secao="hero" variant="compact" loading={i < 3 ? 'eager' : 'lazy'} />
+          <OfferCard offer={offer} secao="hero" variant="compact" loading={i < 3 ? 'eager' : 'lazy'} href={href} />
         </li>
       ))
     }
     {
       offers.map((offer) => (
         <li class="ticker__item ticker__item--clone" aria-hidden="true">
-          <OfferCard offer={offer} secao="hero" variant="compact" loading="lazy" duplicate />
+          <OfferCard offer={offer} secao="hero" variant="compact" loading="lazy" duplicate href={href} />
         </li>
       ))
     }

@@ -2,32 +2,52 @@
 import { Image } from 'astro:assets';
 import mascote from '../assets/mascote.png';
 import downloadedPhotos from '../data/offer-photos.manifest.json';
+import type { ChatContent } from '../data/nichos';
 
 // Usa as mesmas fotos de exemplo das ofertas (baixadas no build); sem foto, mostra o nome do produto.
 const photoFor = (offerId: string) =>
   (downloadedPhotos as Record<string, { src: string }>)[offerId]?.src ?? '';
 
-// Mensagens de exemplo no formato do grupo, usando as ofertas reais de src/data/offers.ts.
-const messages = [
-  {
-    intro: 'Preço farejado!',
-    produto: 'Fone de Ouvido Pulse TWS Bluetooth 5.3',
-    foto: photoFor('oferta-1'),
-    de: 'R$ 149,90',
-    por: 'R$ 73,21',
-    link: 'farofi.no/fone',
-    hora: '09:12',
+interface Props {
+  chat?: ChatContent;
+}
+
+// Padrão: mensagens no formato do grupo geral, usando as ofertas reais de src/data/offers.ts.
+const defaultChat: ChatContent = {
+  grupo: 'FaroFino Ofertas',
+  mensagens: [
+    {
+      intro: 'Preço farejado!',
+      produto: 'Fone de Ouvido Pulse TWS Bluetooth 5.3',
+      ofertaId: 'oferta-1',
+      de: 'R$ 149,90',
+      por: 'R$ 73,21',
+      link: 'farofi.no/fone',
+      hora: '09:12',
+    },
+    {
+      intro: 'Pista quente: esse aqui não dura até amanhã.',
+      produto: 'Jogo de Panelas Inox 5 Peças Wincy',
+      ofertaId: 'oferta-3',
+      de: 'R$ 396,86',
+      por: 'R$ 242,00',
+      link: 'farofi.no/panelas',
+      hora: '12:47',
+    },
+  ],
+  curta: {
+    produto: 'Garrafa térmica Invicta 1 litro',
+    ofertaId: 'oferta-2',
+    de: 'R$ 220,90',
+    por: 'R$ 126,42',
+    link: 'farofi.no/garrafa',
+    hora: '18:05',
   },
-  {
-    intro: 'Pista quente: esse aqui não dura até amanhã.',
-    produto: 'Jogo de Panelas Inox 5 Peças Wincy',
-    foto: photoFor('oferta-3'),
-    de: 'R$ 396,86',
-    por: 'R$ 242,00',
-    link: 'farofi.no/panelas',
-    hora: '12:47',
-  },
-];
+};
+
+const { chat = defaultChat } = Astro.props;
+const messages = chat.mensagens.map((m) => ({ ...m, foto: photoFor(m.ofertaId) }));
+const curtaFoto = photoFor(chat.curta.ofertaId);
 ---
 
 <div class="phone-wrap">
@@ -40,7 +60,7 @@ const messages = [
           <Image src={mascote} alt="" widths={[40, 80]} sizes="40px" loading="lazy" />
         </span>
         <span class="chat__who">
-          <strong>FaroFino Ofertas</strong>
+          <strong>{chat.grupo}</strong>
           <small data-chat-status>grupo · só o FaroFino envia mensagens</small>
         </span>
       </div>
@@ -74,10 +94,10 @@ const messages = [
         <div class="bubble bubble--short" data-bubble>
           <span class="bubble__name">FaroFino</span>
           {
-            photoFor('oferta-2') && (
+            curtaFoto && (
               <img
                 class="bubble__thumb"
-                src={photoFor('oferta-2')}
+                src={curtaFoto}
                 alt=""
                 width="480"
                 height="480"
@@ -87,12 +107,12 @@ const messages = [
             )
           }
           <p class="bubble__text">
-            Garrafa térmica Invicta 1 litro caiu de <s>R$ 220,90</s> pra <b class="bubble__price">R$ 126,42</b>.
+            {chat.curta.produto} caiu de <s>{chat.curta.de}</s> pra <b class="bubble__price">{chat.curta.por}</b>.
             Farejei, conferi, mandei.
             <br />
-            <span class="bubble__link">farofi.no/garrafa</span>
+            <span class="bubble__link">{chat.curta.link}</span>
           </p>
-          <span class="bubble__time">18:05</span>
+          <span class="bubble__time">{chat.curta.hora}</span>
         </div>
         <div class="typing" data-typing hidden>
           <span></span><span></span><span></span>

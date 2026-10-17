@@ -53,3 +53,18 @@ Cada versão se identifica em todas as métricas:
 - **Meta Pixel:** o `PageView` traz a URL (`/` ou `/b`) e o evento `CliqueGrupoWhatsApp` traz o parâmetro `variante` (`a` ou `b`).
 - **Clarity:** etiqueta personalizada `variante` (filtre as gravações por ela).
 - **Link do grupo:** recebe `lp=a` ou `lp=b`, junto com as UTMs.
+
+## Páginas de nicho
+
+| Página | Endereço | Etiqueta da logo |
+| --- | --- | --- |
+| FaroFino Perfumes | `farofinoofertas.com/perfumes` | Perfumes |
+| FaroFino Eletrônicos | `farofinoofertas.com/eletronicos` | Eletrônicos |
+| FaroFino Máquinas (ferramentas e máquinas) | `farofinoofertas.com/maquinas` | Máquinas |
+
+Mesmo layout da página principal, com texto na linha da versão B. Textos, ofertas, celular simulado e **link do grupo**
+de cada nicho ficam em `src/data/nichos.ts` (campo `grupoUrl`, hoje provisório apontando para o link geral).
+Fotos das ofertas: `src/data/offer-photos.json`. Imagem de compartilhamento: `public/og-<nicho>.jpg`.
+
+Nas métricas, cada nicho aparece como `variante` = `perfumes`, `eletronicos` ou `maquinas` (Pixel e Clarity), e o link
+do grupo recebe `lp=<nicho>`.

@@ -1,0 +1,17 @@
+---
+// Página de nicho farofinoofertas.com/perfumes: mesmo layout da principal. Textos, ofertas e link do grupo em src/data/nichos.ts.
+import LandingPage from '../components/LandingPage.astro';
+import { nichos } from '../data/nichos';
+
+const n = nichos.perfumes;
+---
+
+<LandingPage
+  variante={n.slug}
+  copy={n.copy}
+  offers={n.ofertas}
+  grupoUrl={n.grupoUrl}
+  chat={n.chat}
+  marca={n.marca}
+  seo={{ ...n.seo, caminho: '/' + n.slug, nome: 'FaroFino ' + n.marca }}
+/>

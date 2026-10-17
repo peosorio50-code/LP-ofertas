@@ -1,9 +1,9 @@
 ---
 /**
- * Layout da landing page, usado pelas duas versões do teste A/B.
- * Os textos vêm de src/data/copy.ts; o layout é idêntico nas duas.
+ * Layout da landing page, usado pelas versões do teste A/B e pelas páginas de nicho.
+ * Os textos vêm de src/data/copy.ts (A/B) e src/data/nichos.ts (nichos); o layout é idêntico em todas.
  */
-import Base from '../layouts/Base.astro';
+import Base, { type PageSeo } from '../layouts/Base.astro';
 import ChatMock from './ChatMock.astro';
 import CtaButton from './CtaButton.astro';
 import Mascot from './Mascot.astro';
@@ -14,21 +14,30 @@ import SectionBg from './SectionBg.astro';
 import SiteFooter from './SiteFooter.astro';
 import { Image } from 'astro:assets';
 import heroOfertas from '../assets/hero-ofertas.png';
-import { offers } from '../data/offers';
+import { WHATSAPP_GROUP_URL } from '../config';
+import { offers as defaultOffers, type Offer } from '../data/offers';
 import type { PageCopy } from '../data/copy';
+import type { ChatContent } from '../data/nichos';
 
 interface Props {
-  variante: 'a' | 'b';
+  /** Identifica a página no Pixel, no Clarity e no link do grupo (a, b ou o nicho). */
+  variante: string;
   copy: PageCopy;
+  offers?: Offer[];
+  grupoUrl?: string;
+  chat?: ChatContent;
+  /** Etiqueta da logo: FaroFino [Ofertas]. */
+  marca?: string;
+  seo?: PageSeo;
 }
-const { variante, copy } = Astro.props;
+const { variante, copy, offers = defaultOffers, grupoUrl = WHATSAPP_GROUP_URL, chat, marca, seo } = Astro.props;
 
 const mascotAlt = 'Mascote do FaroFino: cachorro caramelo detetive com chapéu xadrez e lupa';
 
 const [featured, ...rest] = offers;
 ---
 
-<Base variante={variante}>
+<Base variante={variante} seo={seo}>
   <main>
   <div class="top">
   <SectionBg name="hero" eager />
@@ -44,7 +53,7 @@ const [featured, ...rest] = offers;
   />
   <header class="site-header">
     <div class="container">
-      <Logo />
+      <Logo tag={marca} />
     </div>
   </header>
 
@@ -66,7 +75,7 @@ const [featured, ...rest] = offers;
           </h1>
           <p class="hero__sub">{copy.hero.subtitulo}</p>
           <div class="hero__cta">
-            <CtaButton secao="hero" label={copy.hero.botao} />
+            <CtaButton secao="hero" label={copy.hero.botao} href={grupoUrl} />
             <p class="hero__note">{copy.hero.nota}</p>
           </div>
         </div>
@@ -84,7 +93,7 @@ const [featured, ...rest] = offers;
           />
         </div>
       </div>
-      <OfferTicker />
+      <OfferTicker offers={offers} href={grupoUrl} />
     </section>
   </div>
 
@@ -111,7 +120,7 @@ const [featured, ...rest] = offers;
           </ol>
         </div>
         <div class="how__phone">
-          <ChatMock />
+          <ChatMock chat={chat} />
         </div>
       </div>
     </section>
@@ -148,18 +157,18 @@ const [featured, ...rest] = offers;
         </div>
         <ul class="showcase" role="list">
           <li class="showcase__featured" data-reveal>
-            <OfferCard offer={featured} secao="vitrine" variant="featured" />
+            <OfferCard offer={featured} secao="vitrine" variant="featured" href={grupoUrl} />
           </li>
           {
             rest.map((offer) => (
               <li data-reveal>
-                <OfferCard offer={offer} secao="vitrine" />
+                <OfferCard offer={offer} secao="vitrine" href={grupoUrl} />
               </li>
             ))
           }
         </ul>
         <div class="showcase__cta">
-          <CtaButton secao="vitrine" label={copy.vitrine.botao} />
+          <CtaButton secao="vitrine" label={copy.vitrine.botao} href={grupoUrl} />
         </div>
       </div>
     </section>
@@ -194,7 +203,7 @@ const [featured, ...rest] = offers;
         <div class="final__text">
           <h2 id="final-title" class="final__title">{copy.final.titulo}</h2>
           <p class="final__sub">{copy.final.subtitulo}</p>
-          <CtaButton secao="final" label={copy.final.botao} />
+          <CtaButton secao="final" label={copy.final.botao} href={grupoUrl} />
         </div>
       </div>
       <Mascot
@@ -208,5 +217,5 @@ const [featured, ...rest] = offers;
     </section>
   </main>
 
-  <SiteFooter />
+  <SiteFooter tag={marca} />
 </Base>

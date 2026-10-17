@@ -12,8 +12,17 @@ interface Props {
   loading?: 'eager' | 'lazy';
   /** Cópia decorativa (usada para o loop infinito do carrossel). */
   duplicate?: boolean;
+  /** Link do grupo (padrão: WHATSAPP_GROUP_URL de src/config.ts). */
+  href?: string;
 }
-const { offer, secao, variant = 'grid', loading = 'lazy', duplicate = false } = Astro.props;
+const {
+  offer,
+  secao,
+  variant = 'grid',
+  loading = 'lazy',
+  duplicate = false,
+  href = WHATSAPP_GROUP_URL,
+} = Astro.props;
 
 // Foto fixada (campo imagem) > foto baixada no build (do anúncio ou ilustrativa) > placeholder neutro
 const downloaded = (downloadedPhotos as Record<string, PhotoInfo>)[offer.id];
@@ -23,7 +32,7 @@ const isStorePhoto = Boolean(offer.imagem) || downloaded?.tipo === 'loja';
 
 <a
   class:list={['offer', `offer--${variant}`]}
-  href={WHATSAPP_GROUP_URL}
+  href={href}
   target="_blank"
   rel="noopener noreferrer"
   data-cta={secao}

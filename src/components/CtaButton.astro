@@ -6,13 +6,15 @@ interface Props {
   /** Nome da seção enviado no evento de clique: hero | vitrine | final */
   secao: 'hero' | 'vitrine' | 'final';
   label?: string;
+  /** Link do grupo (padrão: WHATSAPP_GROUP_URL de src/config.ts). */
+  href?: string;
 }
-const { secao, label = 'Entrar no grupo grátis' } = Astro.props;
+const { secao, label = 'Entrar no grupo grátis', href = WHATSAPP_GROUP_URL } = Astro.props;
 ---
 
 <a
   class="btn"
-  href={WHATSAPP_GROUP_URL}
+  href={href}
   target="_blank"
   rel="noopener noreferrer"
   data-cta={secao}
