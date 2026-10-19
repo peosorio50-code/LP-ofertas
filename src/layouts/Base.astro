@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/temas.css';
 import { PAGE_DESCRIPTION, PAGE_TITLE, SITE_NAME, SITE_URL } from '../config';
 
 export interface PageSeo {
@@ -17,9 +18,12 @@ interface Props {
   /** Versão/nicho da página (vai para o Pixel, o Clarity e o link do grupo): a, b, perfumes... */
   variante?: string;
   seo?: PageSeo;
+  /** Paleta da página (src/styles/temas.css). Sem tema, fica a verde padrão. */
+  tema?: 'perfumes' | 'eletronicos' | 'maquinas';
 }
 const {
   variante = 'a',
+  tema,
   seo = {
     titulo: PAGE_TITLE,
     descricao: PAGE_DESCRIPTION,
@@ -29,13 +33,15 @@ const {
   },
 } = Astro.props;
 
+// Cor da barra do navegador no celular, acompanhando a paleta
+const themeColor = { perfumes: '#331856', eletronicos: '#0F2A5A', maquinas: '#161618' }[tema ?? ''] ?? '#0E4D43';
 // A versão B do teste aponta para a mesma URL oficial da A, para o Google não ver conteúdo duplicado.
 const canonical = new URL(seo.caminho, SITE_URL).toString();
 const ogImage = new URL(seo.ogImage, SITE_URL).toString();
 ---
 
 <!doctype html>
-<html lang="pt-BR" data-variante={variante}>
+<html lang="pt-BR" data-variante={variante} data-tema={tema}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,7 +49,7 @@ const ogImage = new URL(seo.ogImage, SITE_URL).toString();
     <meta name="description" content={seo.descricao} />
     <link rel="canonical" href={canonical} />
     {variante === 'b' && <meta name="robots" content="noindex, follow" />}
-    <meta name="theme-color" content="#0E4D43" />
+    <meta name="theme-color" content={themeColor} />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 

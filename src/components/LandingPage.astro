@@ -14,6 +14,9 @@ import SectionBg from './SectionBg.astro';
 import SiteFooter from './SiteFooter.astro';
 import { Image } from 'astro:assets';
 import heroOfertas from '../assets/hero-ofertas.png';
+import heroOfertasPerfumes from '../assets/hero-ofertas-perfumes.png';
+import heroOfertasEletronicos from '../assets/hero-ofertas-eletronicos.png';
+import heroOfertasMaquinas from '../assets/hero-ofertas-maquinas.png';
 import { WHATSAPP_GROUP_URL } from '../config';
 import { offers as defaultOffers, type Offer } from '../data/offers';
 import type { PageCopy } from '../data/copy';
@@ -29,21 +32,28 @@ interface Props {
   /** Etiqueta da logo: FaroFino [Ofertas]. */
   marca?: string;
   seo?: PageSeo;
+  /** Paleta de cores do nicho (src/styles/temas.css). */
+  tema?: 'perfumes' | 'eletronicos' | 'maquinas';
 }
-const { variante, copy, offers = defaultOffers, grupoUrl = WHATSAPP_GROUP_URL, chat, marca, seo } = Astro.props;
+const { variante, copy, offers = defaultOffers, grupoUrl = WHATSAPP_GROUP_URL, chat, marca, seo, tema } = Astro.props;
+
+// Etiquetas da primeira dobra nas cores do nicho
+const heroDeco = tema
+  ? { perfumes: heroOfertasPerfumes, eletronicos: heroOfertasEletronicos, maquinas: heroOfertasMaquinas }[tema]
+  : heroOfertas;
 
 const mascotAlt = 'Mascote do FaroFino: cachorro caramelo detetive com chapéu xadrez e lupa';
 
 const [featured, ...rest] = offers;
 ---
 
-<Base variante={variante} seo={seo}>
+<Base variante={variante} seo={seo} tema={tema}>
   <main>
   <div class="top">
   <SectionBg name="hero" eager />
   <!-- Composição de etiquetas e selos de oferta (imagem decorativa gerada para a primeira dobra) -->
   <Image
-    src={heroOfertas}
+    src={heroDeco}
     alt=""
     widths={[800, 1200, 1800]}
     sizes="(min-width: 960px) 100vw, 120vw"

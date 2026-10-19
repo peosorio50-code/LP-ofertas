@@ -1,0 +1,78 @@
+/*
+ * Paletas das páginas de nicho. Cada uma troca os tokens de src/styles/global.css
+ * (os nomes continuam "verdes" porque a paleta padrão do FaroFino é verde).
+ * Ativada por <html data-tema="...">, definido em src/layouts/Base.astro.
+ * A imagem de etiquetas da primeira dobra tem uma versão por nicho (scripts/recolor-hero.mjs).
+ */
+
+/* Perfumes: roxo com destaque rosa-orquídea */
+html[data-tema='perfumes'] {
+  --emerald-deep: #22103b;
+  --forest: #331856;
+  --emerald: #45207a;
+  --green: #6a35a8;
+  --mint: #9a68d6;
+  --lime: #f0b6ec;
+  --mint-mist: #faf6fd;
+  --mint-pale: #f1e8fa;
+  --mint-soft: #e0cff3;
+  --cta-end: #8350c8;
+  --title-end: #d4b0ff;
+
+  --lime-rgb: 240, 182, 236;
+  --green-rgb: 106, 53, 168;
+  --mint-rgb: 154, 104, 214;
+  --forest-rgb: 51, 24, 86;
+  --emerald-deep-rgb: 34, 16, 59;
+  --mint-mist-rgb: 250, 246, 253;
+  --mint-pale-rgb: 241, 232, 250;
+  --mint-soft-rgb: 224, 207, 243;
+}
+
+/* Eletrônicos: azul com destaque ciano */
+html[data-tema='eletronicos'] {
+  --emerald-deep: #0a1c3d;
+  --forest: #0f2a5a;
+  --emerald: #143c86;
+  --green: #1d5bd3;
+  --mint: #3f8cff;
+  --lime: #86e0f5;
+  --mint-mist: #f4f8ff;
+  --mint-pale: #e5eefc;
+  --mint-soft: #cddff9;
+  --cta-end: #2f78f0;
+  --title-end: #b5d3ff;
+
+  --lime-rgb: 134, 224, 245;
+  --green-rgb: 29, 91, 211;
+  --mint-rgb: 63, 140, 255;
+  --forest-rgb: 15, 42, 90;
+  --emerald-deep-rgb: 10, 28, 61;
+  --mint-mist-rgb: 244, 248, 255;
+  --mint-pale-rgb: 229, 238, 252;
+  --mint-soft-rgb: 205, 223, 249;
+}
+
+/* Máquinas: preto e grafite com destaque amarelo (cara de ferramenta) */
+html[data-tema='maquinas'] {
+  --emerald-deep: #0c0c0d;
+  --forest: #161618;
+  --emerald: #1e1e21;
+  --green: #2c2c31;
+  --mint: #d9a400;
+  --lime: #f7d06a;
+  --mint-mist: #f7f7f5;
+  --mint-pale: #ededea;
+  --mint-soft: #dcdcd7;
+  --cta-end: #3d3d44;
+  --title-end: #ffe9a8;
+
+  --lime-rgb: 247, 208, 106;
+  --green-rgb: 44, 44, 49;
+  --mint-rgb: 217, 164, 0;
+  --forest-rgb: 22, 22, 24;
+  --emerald-deep-rgb: 12, 12, 13;
+  --mint-mist-rgb: 247, 247, 245;
+  --mint-pale-rgb: 237, 237, 234;
+  --mint-soft-rgb: 220, 220, 215;
+}

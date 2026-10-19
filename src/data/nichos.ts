@@ -30,7 +30,7 @@ export interface ChatContent {
 
 export interface Nicho {
   /** Endereço da página: farofinoofertas.com/<slug>. Também vai como variante no Pixel/Clarity. */
-  slug: string;
+  slug: 'perfumes' | 'eletronicos' | 'maquinas';
   /** Texto da etiqueta da logo: FaroFino [Perfumes]. */
   marca: string;
   /**

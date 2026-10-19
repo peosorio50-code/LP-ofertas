@@ -66,5 +66,9 @@ Mesmo layout da página principal, com texto na linha da versão B. Textos, ofer
 de cada nicho ficam em `src/data/nichos.ts` (campo `grupoUrl`, hoje provisório apontando para o link geral).
 Fotos das ofertas: `src/data/offer-photos.json`. Imagem de compartilhamento: `public/og-<nicho>.jpg`.
 
+Cada nicho tem sua paleta (a verde é a padrão do FaroFino): **Perfumes** roxo, **Eletrônicos** azul e
+**Máquinas** preto com amarelo. As cores ficam em `src/styles/temas.css`. A imagem de etiquetas da primeira dobra
+tem uma versão por nicho, gerada com `node scripts/recolor-hero.mjs`.
+
 Nas métricas, cada nicho aparece como `variante` = `perfumes`, `eletronicos` ou `maquinas` (Pixel e Clarity), e o link
 do grupo recebe `lp=<nicho>`.
