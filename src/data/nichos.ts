@@ -33,10 +33,7 @@ export interface Nicho {
   slug: 'perfumes' | 'eletronicos' | 'maquinas';
   /** Texto da etiqueta da logo: FaroFino [Perfumes]. */
   marca: string;
-  /**
-   * Link do grupo deste nicho.
-   * PROVISÓRIO: enquanto os links de cada grupo não chegam, aponta para o link geral.
-   */
+  /** Link do botão deste nicho (o redirecionamento leva ao grupo certo pelo parâmetro lp). */
   grupoUrl: string;
   seo: { titulo: string; descricao: string; ogImage: string };
   copy: PageCopy;
@@ -145,7 +142,7 @@ const ofertasPerfumes = [
 const perfumes: Nicho = {
   slug: 'perfumes',
   marca: 'Perfumes',
-  grupoUrl: WHATSAPP_GROUP_URL, // PROVISÓRIO: trocar pelo link do grupo de perfumes
+  grupoUrl: `${WHATSAPP_GROUP_URL}/?lp=perfumes`,
   seo: {
     titulo: 'FaroFino Perfumes | Promoções de perfumes no WhatsApp',
     descricao:
@@ -221,7 +218,7 @@ const ofertasEletronicos = [
 const eletronicos: Nicho = {
   slug: 'eletronicos',
   marca: 'Eletrônicos',
-  grupoUrl: WHATSAPP_GROUP_URL, // PROVISÓRIO: trocar pelo link do grupo de eletrônicos
+  grupoUrl: `${WHATSAPP_GROUP_URL}/?lp=eletronicos`,
   seo: {
     titulo: 'FaroFino Eletrônicos | Promoções de eletrônicos no WhatsApp',
     descricao:
@@ -297,7 +294,7 @@ const ofertasMaquinas = [
 const maquinas: Nicho = {
   slug: 'maquinas',
   marca: 'Máquinas',
-  grupoUrl: WHATSAPP_GROUP_URL, // PROVISÓRIO: trocar pelo link do grupo de máquinas
+  grupoUrl: `${WHATSAPP_GROUP_URL}/?lp=maquinas`,
   seo: {
     titulo: 'FaroFino Máquinas | Promoções de ferramentas e máquinas no WhatsApp',
     descricao:

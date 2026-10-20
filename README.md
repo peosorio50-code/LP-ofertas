@@ -63,7 +63,7 @@ Cada versão se identifica em todas as métricas:
 | FaroFino Máquinas (ferramentas e máquinas) | `farofinoofertas.com/maquinas` | Máquinas |
 
 Mesmo layout da página principal, com texto na linha da versão B. Textos, ofertas, celular simulado e **link do grupo**
-de cada nicho ficam em `src/data/nichos.ts` (campo `grupoUrl`, hoje provisório apontando para o link geral).
+de cada nicho ficam em `src/data/nichos.ts` (campo `grupoUrl`: `entrar.farofinoofertas.com/?lp=<nicho>`).
 Fotos das ofertas: `src/data/offer-photos.json`. Imagem de compartilhamento: `public/og-<nicho>.jpg`.
 
 Cada nicho tem sua paleta (a verde é a padrão do FaroFino): **Perfumes** roxo, **Eletrônicos** azul e
