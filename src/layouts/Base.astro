@@ -34,7 +34,7 @@ const {
 } = Astro.props;
 
 // Cor da barra do navegador no celular, acompanhando a paleta
-const themeColor = { perfumes: '#331856', eletronicos: '#0F2A5A', maquinas: '#161618' }[tema ?? ''] ?? '#0E4D43';
+const themeColor = tema ? { perfumes: '#331856', eletronicos: '#0F2A5A', maquinas: '#161618' }[tema] : '#0E4D43';
 // A versão B do teste aponta para a mesma URL oficial da A, para o Google não ver conteúdo duplicado.
 const canonical = new URL(seo.caminho, SITE_URL).toString();
 const ogImage = new URL(seo.ogImage, SITE_URL).toString();
